@@ -1,4 +1,4 @@
-namespace OpenFinan.Domain;
+namespace OpenFinan.Domain.Entity;
 
 public class ParcelaFinanciamentoEntity
 {

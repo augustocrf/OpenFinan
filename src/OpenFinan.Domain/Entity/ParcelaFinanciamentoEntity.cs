@@ -1,3 +1,5 @@
+using System;
+
 namespace OpenFinan.Domain.Entity;
 
 public class ParcelaFinanciamentoEntity
@@ -6,6 +8,6 @@ public class ParcelaFinanciamentoEntity
     public int idfinanciamento { get; set; }
     public int numeroparcela { get; set; } 
     public double valorparcela { get; set; }
-    public date datavencimento { get; set; }
-    public date datapamento { get; set; }
+    public DateTime datavencimento { get; set; }
+    public DateTime datapamento { get; set; }
 }

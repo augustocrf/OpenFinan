@@ -1,3 +1,5 @@
+using System;
+
 namespace OpenFinan.Domain.Entity;
 
 public class FinanciamentoEntity
@@ -6,5 +8,5 @@ public class FinanciamentoEntity
     public int cpf {get; set;}
     public int idtipofinanciamento { get; set; }
     public double valortotal { get; set; }
-    public date dataultimovencimento { get; set; }
+    public DateTime dataultimovencimento { get; set; }
 }

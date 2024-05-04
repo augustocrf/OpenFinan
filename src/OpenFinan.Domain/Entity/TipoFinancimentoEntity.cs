@@ -1,3 +1,5 @@
+using System;
+
 namespace OpenFinan.Domain.Entity;
 
 public class TipoFinanciamentoEntity

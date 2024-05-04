@@ -1,3 +1,5 @@
+using OpenFinan.Domain.Entity;
+
 namespace OpenFinan.Domain.Repositories;
 
 public interface IClienteWriteOnlyRepository

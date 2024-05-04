@@ -1,10 +1,12 @@
+using OpenFinan.Domain.Entity;
+
 namespace OpenFinan.Domain.Repositories;
 
-public class IClienteReadOnlyRepository
+public interface IClienteReadOnlyRepository
 {		
-        Task<ClienteEntity> RetornaClienteAsync(int cpf);		
+    Task<ClienteEntity> RetornaClienteAsync(int cpf);		
 
-		Task<bool> ClienteExisteAsync(int cpf);
+    Task<bool> ClienteExisteAsync(int cpf);
 
-		Task<IEnumerable<ClienteEntity>> ListaClienteAsync();
+    Task<IEnumerable<ClienteEntity>> ListaClientesAsync();
 }

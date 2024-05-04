@@ -30,7 +30,7 @@ public interface ITipoFinanciamentoService
     /// </summary>
     /// <param name="TipoFinanciamento">Objeto TipoFinanciamento</param>
     //// <exception cref="DomainBase.Exceptions.ValidationCoreException"></exception>
-    Task AtualizaTipoFinanciamentosync(TipoFinanciamentoEntity TipoFinanciamento);
+    Task AtualizaTipoFinanciamentoAsync(TipoFinanciamentoEntity TipoFinanciamento);
 
     /// <summary>
     /// Exclui uma TipoFinanciamento

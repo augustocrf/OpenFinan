@@ -36,7 +36,7 @@ public class TipoFinanciamentoRepository : ITipoFinanciamentoReadOnlyRepository,
     public async Task<bool> TipoFinanciamentoExisteAsync(int idtipofinanciamento)
     {
         var TipoFinanciamentoParams = new DynamicParameters();
-        TipoFinanciamentoParams.Add("idtipofinanciamentno", idtipofinanciamento);
+        TipoFinanciamentoParams.Add("idtipofinanciamento", idtipofinanciamento);
 
         var query = @"select count(idtipofinanciamento) from TipoFinanciamento Where idtipofinanciamento = @idtipofinanciamento";
 

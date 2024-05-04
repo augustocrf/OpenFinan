@@ -1,6 +1,6 @@
 using OpenFinan.Domain.Entity;
 
-namespace OpenFinan.Domain.Repositories;
+namespace OpenFinan.Domain.Services;
 
 public interface IClienteService
 {

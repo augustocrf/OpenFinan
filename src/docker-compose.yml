@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  dbctrlopenfinan:
+    image: mysql
+    env_file: ./.env
+    container_name: dbctrlopenfinan
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: $MYSQL_DATABASE
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: docker      
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:      
+      - mysql-data:/var/lib/mysql
+      - ./docker/db/my.cnf:/etc/my.cnf
+      - "./docker/db/sql/setup.sql:/docker-entrypoint-initdb.d/1.sql"
+    ports:
+      - 3306:3306
+    networks:
+      - app-connect
+
+  openfinan.webapi:
+    image: ${DOCKER_REGISTRY-}openfinan
+    build:
+      context: .
+      dockerfile: OpenFinan.WebApi/Dockerfile        
+    depends_on:
+      - dbctrlopenfinan
+    ports:
+      - 4002:4200      
+    restart: always
+    #Specify Environment Variables for the Api Service
+    environment: 
+      - DBHOST=database
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:4200
+    #volumes:
+    #  - ~/.aspnet/https:/root/.aspnet/https:ro
+    #  - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
+
+volumes:
+  mysql-data:
+    driver: local
+
+networks:
+  app-connect:
+      driver: bridge

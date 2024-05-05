@@ -6,21 +6,11 @@ Api de Financiamento, com a funcionalidade de efetuar Financiamento.
 
 
 ## Tecnologia
-<h2 align="center">Principais tecnologias:</h2>
+### Principais tecnologias:
 </br>
-<div align="center">
+<div>
   <img src="https://skillicons.dev/icons?i=vscode,dotnet,cs,git,github,mysql,docker,kubernetes,&perline=8" />
 </div>
-
-![C#](https://img.shields.io/badge/C%23-00599C?style=for-the-badge&logo=c-sharp&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-000?style=for-the-badge&logo=docker)
-[![Git](https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white)](https://git-scm.com/doc)
-[![GitHub](https://img.shields.io/badge/GitHub-000?style=for-the-badge&logo=github&logoColor=30A3DC)](https://docs.github.com/)
-![Vscode](https://img.shields.io/badge/Vscode-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white)
-
-## Banco de dados
-<img align="center" alt="Augustocrf-MySQL" height="40" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original-wordmark.svg">
-
 
 ## Comandos DotNet
 Comando utilizado para iniciar o projeto utilizando o VS Code.

@@ -39,19 +39,19 @@ public class TipoFinanciamentoService : ITipoFinanciamentoService
         await tipofinanciamentoWriteOnlyRepository.AtualizaTipoFinanciamentoAsync(tipofinanciamento);
     }
 
-    public async Task<bool> TipoFinanciamentoExisteAsync(int idtipofinanciamentno)
+    public async Task<bool> TipoFinanciamentoExisteAsync(int idtipofinanciamento)
     {
-        var result = await tipofinanciamentoReadOnlyRepository.TipoFinanciamentoExisteAsync(idtipofinanciamentno);
+        var result = await tipofinanciamentoReadOnlyRepository.TipoFinanciamentoExisteAsync(idtipofinanciamento);
 
         return result;
     }
 
-    public async Task ExcluiTipoFinanciamentoAsync(int idtipofinanciamentno)
+    public async Task ExcluiTipoFinanciamentoAsync(int idtipofinanciamento)
     {
-        if (!await TipoFinanciamentoExisteAsync(idtipofinanciamentno))
+        if (!await TipoFinanciamentoExisteAsync(idtipofinanciamento))
             throw new TipoFinanciamentoCoreException(TipoFinanciamentoCoreError.TipoFinanciamentoNaoEncontrado);
 
-        await tipofinanciamentoWriteOnlyRepository.ExcluiTipoFinanciamentoAsync(idtipofinanciamentno);
+        await tipofinanciamentoWriteOnlyRepository.ExcluiTipoFinanciamentoAsync(idtipofinanciamento);
     }
 
     public async Task IncluiTipoFinanciamentoAsync(TipoFinanciamentoEntity tipofinanciamento)
@@ -68,9 +68,9 @@ public class TipoFinanciamentoService : ITipoFinanciamentoService
         logger.LogInformation("Tipo Financiamento gravado.");
     }
 
-    public async Task<TipoFinanciamentoEntity> RetornaTipoFinanciamentoAsync(int idtipofinanciamentno)
+    public async Task<TipoFinanciamentoEntity> RetornaTipoFinanciamentoAsync(int idtipofinanciamento)
     {
-        var tipofinanciamento = await tipofinanciamentoReadOnlyRepository.RetornaTipoFinanciamentoAsync(idtipofinanciamentno);
+        var tipofinanciamento = await tipofinanciamentoReadOnlyRepository.RetornaTipoFinanciamentoAsync(idtipofinanciamento);
         
         return tipofinanciamento;
     }

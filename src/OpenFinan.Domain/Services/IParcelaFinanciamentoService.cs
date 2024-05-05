@@ -59,5 +59,5 @@ public interface IParcelaFinanciamentoService
     /// Retorna uma lista de ParcelasFinanciamentos
     /// </summary>
     /// <returns></returns>
-    Task<IEnumerable<ParcelaFinanciamentoEntity>> RetornaParelasFinanciamentosAsync();
+    Task<IEnumerable<ParcelaFinanciamentoEntity>> RetornaParcelasFinanciamentosAsync();
 }

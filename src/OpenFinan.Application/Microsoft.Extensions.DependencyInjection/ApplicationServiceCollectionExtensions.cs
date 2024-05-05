@@ -14,6 +14,7 @@ public static class ApplicationServiceCollectionExtensions
         services.AddScoped<IClienteService, ClienteService>();
         services.AddScoped<ITipoFinanciamentoService, TipoFinanciamentoService>();
         services.AddScoped<IFinanciamentoService, FinanciamentoService>();
+        services.AddScoped<IParcelaFinanciamentoService, ParcelaFinanciamentoService>();
         
         return services;
     }

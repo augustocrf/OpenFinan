@@ -12,6 +12,8 @@ public static class ApplicationServiceCollectionExtensions
             throw new ArgumentNullException(nameof(services));
 
         services.AddScoped<IClienteService, ClienteService>();
+        services.AddScoped<ITipoFinanciamentoService, TipoFinanciamentoService>();
+        services.AddScoped<IFinanciamentoService, FinanciamentoService>();
         
         return services;
     }

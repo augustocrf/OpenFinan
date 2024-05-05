@@ -20,7 +20,11 @@ public static class OpenFinanRepositoryServiceCollectionExtensions
 
         services.AddScoped<IClienteReadOnlyRepository, ClienteRepository>();
         services.AddScoped<IClienteWriteOnlyRepository, ClienteRepository>();
-        
+        services.AddScoped<ITipoFinanciamentoReadOnlyRepository, TipoFinanciamentoRepository>();
+        services.AddScoped<ITipoFinanciamentoWriteOnlyRepository, TipoFinanciamentoRepository>();
+        services.AddScoped<IFinanciamentoReadOnlyRepository, FinanciamentoRepository>();
+        services.AddScoped<IFinanciamentoWriteOnlyRepository, FinanciamentoRepository>();
+
         services.AddScoped<IDbConnection>(d =>
         {
             return new MySqlConnection(configuration.SqlConnectionString);

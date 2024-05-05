@@ -10,5 +10,5 @@ public interface IParcelaFinanciamentoWriteOnlyRepository
 
     Task ExcluiParcelaFinanciamentoAsync(int idparcelafinanciamento);
 
-    Task ExcluiParcelasFinanciamentoClienteAsync(int idfinanciamento);
+    Task ExcluiParcelasFinanciamentoAsync(int idfinanciamento);
 }

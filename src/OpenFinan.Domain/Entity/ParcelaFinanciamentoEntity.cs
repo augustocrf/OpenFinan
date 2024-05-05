@@ -9,5 +9,5 @@ public class ParcelaFinanciamentoEntity
     public int numeroparcela { get; set; } 
     public double valorparcela { get; set; }
     public DateTime datavencimento { get; set; }
-    public DateTime datapamento { get; set; }
+    public DateTime datapagamento { get; set; }
 }

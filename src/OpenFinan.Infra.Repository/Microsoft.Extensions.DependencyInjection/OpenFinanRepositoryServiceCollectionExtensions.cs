@@ -24,6 +24,8 @@ public static class OpenFinanRepositoryServiceCollectionExtensions
         services.AddScoped<ITipoFinanciamentoWriteOnlyRepository, TipoFinanciamentoRepository>();
         services.AddScoped<IFinanciamentoReadOnlyRepository, FinanciamentoRepository>();
         services.AddScoped<IFinanciamentoWriteOnlyRepository, FinanciamentoRepository>();
+        services.AddScoped<IParcelaFinanciamentoReadOnlyRepository, ParcelaFinanciamentoRepository>();
+        services.AddScoped<IParcelaFinanciamentoWriteOnlyRepository, ParcelaFinanciamentoRepository>();
 
         services.AddScoped<IDbConnection>(d =>
         {

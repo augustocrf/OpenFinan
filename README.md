@@ -6,7 +6,6 @@ Api de Financiamento, com a funcionalidade de efetuar Financiamento.
 
 
 ## Tecnologia
-### Principais tecnologias:
 </br>
 <div>
   <img src="https://skillicons.dev/icons?i=vscode,dotnet,cs,git,github,mysql,docker,kubernetes,&perline=8" />

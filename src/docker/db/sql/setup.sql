@@ -28,6 +28,18 @@ CREATE TABLE Financiamento (
         REFERENCES TipoFinanciamento(idTipoFinanciamento)
 ) ENGINE=INNODB;
 
+CREATE TABLE ParcelaFinanciamento (
+    idparcelafinanciamento INT NOT NULL AUTO_INCREMENT,
+    idfinanciamento INT NOT NULL,
+    numeroparcela INT NOT NULL,
+    valorparcela DECIMAL NOT NULL,
+    datavencimento DATETIME NOT NULL,
+    datapagamento DATETIME,
+    PRIMARY KEY(idparcelafinanciamento),
+    FOREIGN KEY(idfinanciamento)
+        REFERENCES Financiamento(idfinanciamento)
+) ENGINE=INNODB;
+
 INSERT INTO TipoFinanciamento (id, descricao, taxa) VALUES (1, 'Crédito Direto', 2)
 INSERT INTO TipoFinanciamento (id, descricao, taxa) VALUES (2, 'Crédito Consignado', 1)
 INSERT INTO TipoFinanciamento (id, descricao, taxa) VALUES (3, 'Crédito Pessoa Jurídica', 5)

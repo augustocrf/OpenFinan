@@ -18,7 +18,10 @@ CREATE TABLE TipoFinanciamento (
 CREATE TABLE Financiamento (
     idfinanciamento INT NOT NULL AUTO_INCREMENT,
     cpf INT NOT NULL,
+    quantidadeparcela INT NOT NULL,
+    valorcredito DECIMAL NOT NULL,
     valortotal DECIMAL NOT NULL,
+    dataprimeiraparcela DATETIME NOT NULL,
     dataultimovencimento DATETIME NOT NULL,
     idtipofinanciamento INT NOT NULL,
     PRIMARY KEY(idfinanciamento),

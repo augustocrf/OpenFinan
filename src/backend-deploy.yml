@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openfinan
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: openfinan
+    spec:
+      containers:
+      - name: openfinan
+        image: augustocrf/openfinan
+        env:
+          # This will help in displaying full error
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Development
+        - name: MYSQLCONNECTION
+          value: server=db;port=3306;database=openfinan;user=root;password=bindu123
+        ports:
+        - containerPort: 4200
+        env:
+        - name: ASPNETCORE_URLS
+          value: http://*:4200
+  selector:
+    matchLabels:
+      app: openfinan
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: openfinan
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 4200
+  selector:
+    app: openfinan

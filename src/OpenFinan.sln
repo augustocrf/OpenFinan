@@ -3,6 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenFinan.Domain", "OpenFinan.Domain\OpenFinan.Domain.csproj", "{EF12AD24-48D6-4824-AB02-B65BB3F5B29C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenFinan.DomainBase.Exceptions", "OpenFinan.DomainBase.Exceptions\OpenFinan.DomainBase.Exceptions.csproj", "{E32F0609-2A06-4BE3-A1BD-CA6E67C11446}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenFinan.Infra.Repository", "OpenFinan.Infra.Repository\OpenFinan.Infra.Repository.csproj", "{7E7C9FD9-FB07-4A0E-9F97-D6F7A94C6413}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenFinan.Application", "OpenFinan.Application\OpenFinan.Application.csproj", "{985FB787-78A2-4161-8626-262258F5D9BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenFinan.WebApi", "OpenFinan.WebApi\OpenFinan.WebApi.csproj", "{A66E8571-7CE4-4CDD-8CAD-74070EE91795}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -10,5 +20,27 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EF12AD24-48D6-4824-AB02-B65BB3F5B29C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF12AD24-48D6-4824-AB02-B65BB3F5B29C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF12AD24-48D6-4824-AB02-B65BB3F5B29C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF12AD24-48D6-4824-AB02-B65BB3F5B29C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E32F0609-2A06-4BE3-A1BD-CA6E67C11446}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E32F0609-2A06-4BE3-A1BD-CA6E67C11446}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E32F0609-2A06-4BE3-A1BD-CA6E67C11446}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E32F0609-2A06-4BE3-A1BD-CA6E67C11446}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E7C9FD9-FB07-4A0E-9F97-D6F7A94C6413}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E7C9FD9-FB07-4A0E-9F97-D6F7A94C6413}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E7C9FD9-FB07-4A0E-9F97-D6F7A94C6413}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E7C9FD9-FB07-4A0E-9F97-D6F7A94C6413}.Release|Any CPU.Build.0 = Release|Any CPU
+		{985FB787-78A2-4161-8626-262258F5D9BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{985FB787-78A2-4161-8626-262258F5D9BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{985FB787-78A2-4161-8626-262258F5D9BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{985FB787-78A2-4161-8626-262258F5D9BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A66E8571-7CE4-4CDD-8CAD-74070EE91795}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A66E8571-7CE4-4CDD-8CAD-74070EE91795}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A66E8571-7CE4-4CDD-8CAD-74070EE91795}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A66E8571-7CE4-4CDD-8CAD-74070EE91795}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

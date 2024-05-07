@@ -47,4 +47,4 @@ INSERT INTO TipoFinanciamento (id, descricao, taxa) VALUES (1, 'Crédito Direto'
 INSERT INTO TipoFinanciamento (id, descricao, taxa) VALUES (2, 'Crédito Consignado', 1)
 INSERT INTO TipoFinanciamento (id, descricao, taxa) VALUES (3, 'Crédito Pessoa Jurídica', 5)
 INSERT INTO TipoFinanciamento (id, descricao, taxa) VALUES (4, 'Crédito Pessoa Física', 3)
-INSERT INTO TipoFinanciamento (id, descricao, taxa) VALUES (1, 'Crédito Imobiliário', 9)
+INSERT INTO TipoFinanciamento (id, descricao, taxa) VALUES (5, 'Crédito Imobiliário', 9)

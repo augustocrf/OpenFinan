@@ -46,7 +46,13 @@ Comandos utilizado para iniciar o projeto utilizando o VS Code.
 🔹 dotnet new classlib --name "OpenFinan.DomainBase.Exceptions" --language "C#" --framework "net8.0". </br> 
 🔹 dotnet new classlib --name "OpenFinan.Application" --language "C#" --framework "net8.0". </br>
 
+##Executar a aplicação 
+
+## Consulta para identificação de clientes 
+
+🔹 src/docker/sp/sp_lista4clientessematraso.sp
+🔹 src/docker/sp/sp_listaclientesSP60.sp
 
 
-
+# Microsserviços
 

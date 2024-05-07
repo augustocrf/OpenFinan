@@ -76,6 +76,11 @@ public class FinanciamentoService : IFinanciamentoService
 
         ValidationHelper.ThrowValidationExceptionIfNotValid(financiamento);
 
+        //3 - Credito Pesssoa Juridica
+        if(financiamento.idtipofinanciamento == 3) 
+            if (financiamento.valorcredito < 15000)
+                throw new FinanciamentoServiceException("Para o crédito pessoa juridica o valorcredito tem que ser maior que R$ 15000,00.");
+                
         // Utilizar a gravação de logInformation somente se for realmente necessário
         // ter um acompanhamento de tudo que esta acontecendo
         logger.LogInformation("Iniciando gravação da Financiamento...");

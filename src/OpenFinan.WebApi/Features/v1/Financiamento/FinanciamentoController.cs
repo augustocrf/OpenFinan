@@ -8,7 +8,6 @@ using OpenFinan.Domain.Entity;
 using OpenFinan.Domain.Services;
 using OpenFinan.WebApi.Dtos.Financiamento;
 using Microsoft.AspNetCore.Mvc;
-
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace OpenFinan.WebApi.Controllers;

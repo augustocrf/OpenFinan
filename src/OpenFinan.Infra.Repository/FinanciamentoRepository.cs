@@ -26,12 +26,18 @@ public class FinanciamentoRepository : IFinanciamentoReadOnlyRepository, IFinanc
         var financiamentoParams = new DynamicParameters();
         financiamentoParams.Add("idfinanciamento", financiamento.idfinanciamento);
         financiamentoParams.Add("idtipofinanciamento", financiamento.idtipofinanciamento);
+        financiamentoParams.Add("quantidadeparcela", financiamento.quantidadeparcela);
+        financiamentoParams.Add("valorcredito", financiamento.valorcredito);
         financiamentoParams.Add("valortotal", financiamento.valortotal);
+        financiamentoParams.Add("dataprimeiraparcela", financiamento.dataprimeiraparcela);
         financiamentoParams.Add("dataultimovencimento", financiamento.dataultimovencimento);
 
         var queryFinanciamento = @"UPDATE Financiamento SET 
                                         idtipofinaniamento = @idtipofinaniamento,
+                                        quantidadeparcela = @quantidadeparcela,
+                                        valorcredito = @valorcredito,
                                         valortotal = @valortotal,
+                                        dataprimeiraparcela = @dataprimeiraparcela,
                                         dataultimovencimento = @dataultimovencimento
                                         WHERE idfinanciamento = @idfinanciamento";
 
@@ -92,11 +98,14 @@ public class FinanciamentoRepository : IFinanciamentoReadOnlyRepository, IFinanc
         var financiamentoParams = new DynamicParameters();
         financiamentoParams.Add("cpf", financiamento.cpf);
         financiamentoParams.Add("idtipofinanciamento", financiamento.idtipofinanciamento);
+        financiamentoParams.Add("quantidadeparcela", financiamento.quantidadeparcela);
+        financiamentoParams.Add("valorcredito", financiamento.valorcredito);
         financiamentoParams.Add("valortotal", financiamento.valortotal);
+        financiamentoParams.Add("dataprimeiraparcela", financiamento.dataprimeiraparcela);
         financiamentoParams.Add("dataultimovencimento", financiamento.dataultimovencimento);
 
-        var queryFinanciamento = @"INSERT INTO Financiamento (cpf, idtipofinanciamento, valortotal, dataultimovencimento) 
-                            VALUES (@cpf, @idtipofinanciamento, @valortotal, @dataultimovencimento)";
+        var queryFinanciamento = @"INSERT INTO Financiamento (cpf, idtipofinanciamento, quantidadeparcela, valorcredito, valortotal, dataprimeiraparcela, dataultimovencimento) 
+                            VALUES (@cpf, @idtipofinanciamento, @quantidadeparcela, @valorcredito, @valortotal, @dataprimeiraparcela, @dataultimovencimento)";
 
         await dbConnection.ExecuteAsync(queryFinanciamento, financiamentoParams);
     }
@@ -105,7 +114,8 @@ public class FinanciamentoRepository : IFinanciamentoReadOnlyRepository, IFinanc
     {
         var query = @"select 
                         idfinanciamento, cpf, idtipofinanciamento, 
-                        valortotal, dataultimovencimento 
+                        quantidadeparcela, valorcredito, valortotal, 
+                        dataprimeiraparcela, dataultimovencimento 
                         from Financiamento";    
 
         var financiamentos = await dbConnection.QueryAsync<FinanciamentoEntity>(query);
@@ -120,7 +130,8 @@ public class FinanciamentoRepository : IFinanciamentoReadOnlyRepository, IFinanc
 
         var query = @"select 
                         idfinanciamento, cpf, idtipofinanciamento, 
-                        valortotal, dataultimovencimento 
+                        quantidadeparcela, valorcredito, valortotal, 
+                        dataprimeiraparcela, dataultimovencimento
                         from Financiamento 
                         Where idfinanciamento = @idfinanciamento";
 

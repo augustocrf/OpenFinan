@@ -61,8 +61,8 @@ Processo de utlização de containers(containerd), para compilar basta seguir os
 >$ nerdctl login
 
 #### Fazer upload das imagens para o Docker Hub
->$ nerdctl tag controlefinanceiro [YOUR DOCKER USER NAME]/controlefinanceiro
->$ nerdctl push [YOUR DOCKER USER NAME]/controlefinanceiro
+>$ nerdctl tag openfinan [YOUR DOCKER USER NAME]/openfinan
+>$ nerdctl push [YOUR DOCKER USER NAME]/openfinan
 
 #### Implantar e executar o microsserviço de back-end
 >$ kubectl apply -f backend-deploy.yml

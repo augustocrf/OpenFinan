@@ -10,6 +10,7 @@ public class FinanciamentoEntity
     public int quantidadeparcela { get; set; }
     public double valorcredito {get; set;}  
     public double valortotal { get; set; }
+    public double valorjuros { get; set; }
     public DateTime dataprimeiraparcela { get; set; }
     public DateTime dataultimovencimento { get; set; }
 }

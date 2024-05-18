@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using OpenFinan.Domain.Exceptions;
 using OpenFinan.Domain.Entity;
+using OpenFinan.Domain.Dtos;
 using OpenFinan.Domain.Repositories;
 using OpenFinan.Domain.Services;
+using OpenFinan.Domain.Validators;
 using Microsoft.Extensions.Logging;
 using Otc.Validations.Helpers;
+using System.Net;
 
 namespace OpenFinan.Application.Services;
 
@@ -18,6 +21,9 @@ public class FinanciamentoService : IFinanciamentoService
     private readonly IParcelaFinanciamentoWriteOnlyRepository parcelafinanciamentoWriteOnlyRepository;
     private readonly ITipoFinanciamentoReadOnlyRepository tipofinanciamentoReadOnlyRepository;
     private readonly ITipoFinanciamentoWriteOnlyRepository tipofinanciamentoWriteOnlyRepository;
+    private readonly IClienteReadOnlyRepository clienteReadOnlyRepository;
+    private readonly IClienteWriteOnlyRepository clienteWriteOnlyRepository;    
+    private readonly IFinanciamentoValidator financiamentoValidator;
     private readonly ILogger logger;
 
     public FinanciamentoService(IFinanciamentoReadOnlyRepository financiamentoReadOnlyRepository
@@ -26,6 +32,9 @@ public class FinanciamentoService : IFinanciamentoService
         ,IParcelaFinanciamentoWriteOnlyRepository parcelafinanciamentoWriteOnlyRepository
         ,ITipoFinanciamentoReadOnlyRepository tipofinanciamentoReadOnlyRepository
         ,ITipoFinanciamentoWriteOnlyRepository tipofinanciamentoWriteOnlyRepository
+        ,IClienteReadOnlyRepository clienteReadOnlyRepository
+        ,IClienteWriteOnlyRepository clienteWriteOnlyRepository
+        ,IFinanciamentoValidator financiamentoValidator
         ,ILoggerFactory loggerFactory)
     {
         this.financiamentoReadOnlyRepository  = financiamentoReadOnlyRepository ?? throw new ArgumentNullException(nameof(financiamentoReadOnlyRepository));
@@ -34,6 +43,9 @@ public class FinanciamentoService : IFinanciamentoService
         this.parcelafinanciamentoWriteOnlyRepository  = parcelafinanciamentoWriteOnlyRepository ?? throw new ArgumentNullException(nameof(parcelafinanciamentoWriteOnlyRepository));
         this.tipofinanciamentoReadOnlyRepository  = tipofinanciamentoReadOnlyRepository ?? throw new ArgumentNullException(nameof(tipofinanciamentoReadOnlyRepository));
         this.tipofinanciamentoWriteOnlyRepository  = tipofinanciamentoWriteOnlyRepository ?? throw new ArgumentNullException(nameof(tipofinanciamentoWriteOnlyRepository));
+        this.clienteReadOnlyRepository  = clienteReadOnlyRepository?? throw new ArgumentNullException(nameof(clienteReadOnlyRepository));
+        this.clienteWriteOnlyRepository  = clienteWriteOnlyRepository?? throw new ArgumentNullException(nameof(clienteWriteOnlyRepository));
+        this.financiamentoValidator  = financiamentoValidator?? throw new ArgumentNullException(nameof(financiamentoValidator));
 
         this.logger = loggerFactory?.CreateLogger<FinanciamentoService>() ?? throw new ArgumentNullException(nameof(loggerFactory));
     }
@@ -81,20 +93,26 @@ public class FinanciamentoService : IFinanciamentoService
         await financiamentoWriteOnlyRepository.ExcluiFinanciamentoClienteAsync(cpf);
     }
 
-    public async Task IncluiFinanciamentoAsync(FinanciamentoEntity financiamento)
+    public async Task<FinanciamentoResult> IncluiFinanciamentoAsync(FinanciamentoEntity financiamento)
     {
         if (financiamento == null)
-            throw new ArgumentNullException(nameof(financiamento));
-
+            return new FinanciamentoResult { status = "Recusado", valorTotal = 0, valorJuros = 0 };
+            
         ValidationHelper.ThrowValidationExceptionIfNotValid(financiamento);
 
-        //3 - Credito Pesssoa Juridica
-        if(financiamento.idtipofinanciamento == 3) 
-            if (financiamento.valorcredito < 15000)
-                throw new FinanciamentoServiceException("Para o crédito pessoa juridica o valorcredito tem que ser maior que R$ 15000,00.");
+        // Pesquisa se o cliente exite
+        ClienteEntity cliente = await this.clienteReadOnlyRepository.RetornaClienteAsync(financiamento.cpf);
+        if (cliente == null)
+            return new FinanciamentoResult { status = "Recusado", valorTotal = 0, valorJuros = 0 };
 
-        //Pesqui o tipo de financiamento para recuperar a taxa
+        // Pesquisa se o tipo de financiamento exite
         TipoFinanciamentoEntity tipofinanciamento = await this.tipofinanciamentoReadOnlyRepository.RetornaTipoFinanciamentoAsync(financiamento.idtipofinanciamento);
+        if (tipofinanciamento == null)
+            return new FinanciamentoResult { status = "Recusado", valorTotal = 0, valorJuros = 0 };
+
+        // Valida se o financiamento é valido
+        if (!financiamentoValidator.ValidateAsync(financiamento))
+            return new FinanciamentoResult { status = "Recusado", valorTotal = 0, valorJuros = 0 };
 
         // Utilizar a gravação de logInformation somente se for realmente necessário
         // ter um acompanhamento de tudo que esta acontecendo
@@ -112,12 +130,13 @@ public class FinanciamentoService : IFinanciamentoService
         }       
         logger.LogInformation("Parcela Financiamento gravado.");
 
+        return new FinanciamentoResult { status = "Recusado", valorTotal = (decimal)financiamento.valortotal, valorJuros = (decimal)financiamento.valorjuros}; 
     }
-
     private async Task CalcularValorTotal(FinanciamentoEntity financiamento, double taxa)
     {
-        //Calcula o montante total de um financiamento com juros simples ao mës
-        financiamento.valortotal = financiamento.valorcredito * taxa * financiamento.quantidadeparcela;
+        //Calcula o valor total de um financiamento com juros simples ao mës
+        financiamento.valorjuros = ( financiamento.valorcredito * (taxa /100) * financiamento.quantidadeparcela );
+        financiamento.valortotal = financiamento.valorcredito + financiamento.valorjuros;
         financiamento.dataultimovencimento = financiamento.dataprimeiraparcela.AddMonths(financiamento.quantidadeparcela);
     }
 

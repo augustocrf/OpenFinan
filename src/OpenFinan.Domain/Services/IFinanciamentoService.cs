@@ -1,4 +1,5 @@
 using OpenFinan.Domain.Entity;
+using OpenFinan.Domain.Dtos;
 
 namespace OpenFinan.Domain.Services;
 
@@ -30,7 +31,8 @@ public interface IFinanciamentoService
     /// </summary>
     /// <param name="financiamento">Objeto Financiamento</param>
     //// <exception cref="ValidationCoreException"></exception>
-    Task IncluiFinanciamentoAsync(FinanciamentoEntity financiamento);        
+    /// <returns>FinanciamentoResult</returns> 
+    Task<FinanciamentoResult> IncluiFinanciamentoAsync(FinanciamentoEntity financiamento);
 
     /// <summary>
     /// Atualiza uma Financiamento

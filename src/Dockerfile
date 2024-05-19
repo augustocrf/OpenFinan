@@ -14,13 +14,13 @@ COPY ["OpenFinan.Infra.Repository/OpenFinan.Infra.Repository.csproj", "OpenFinan
 COPY ["OpenFinan.Application/OpenFinan.Application.csproj", "OpenFinan.Application/"]
 RUN dotnet restore "OpenFinan.WebApi/OpenFinan.WebApi.csproj"
 COPY . .
-WORKDIR "/src/OpenFinan.WebApi"
-RUN dotnet build "OpenFinan.WebApi.csproj" -c Release -o /src/app/build
+WORKDIR "/OpenFinan.WebApi"
+RUN dotnet build "OpenFinan.WebApi.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "OpenFinan.WebApi.csproj" -c Release -o /src/app/publish
+RUN dotnet publish "OpenFinan.WebApi.csproj" -c Release -o /app/publish
 
 FROM base AS final
-WORKDIR /src/app
-COPY --from=publish /src/app/publish .
+WORKDIR /app
+COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "OpenFinan.WebApi.dll"]

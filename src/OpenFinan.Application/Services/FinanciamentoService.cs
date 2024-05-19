@@ -62,21 +62,18 @@ public class FinanciamentoService : IFinanciamentoService
 
         await financiamentoWriteOnlyRepository.AtualizaFinanciamentoAsync(financiamento);
     }
-
     public async Task<bool> FinanciamentoExisteAsync(int idfinanciamento)
     {
         var result = await financiamentoReadOnlyRepository.FinanciamentoExisteAsync(idfinanciamento);
 
         return result;
     }
-
     public async Task<bool> FinanciamentoClienteExisteAsync(int cpf)
     {
         var result = await financiamentoReadOnlyRepository.FinanciamentoClienteExisteAsync(cpf);
 
         return result;
     }
-
     public async Task ExcluiFinanciamentoAsync(int idfinanciamento)
     {
         if (!await FinanciamentoExisteAsync(idfinanciamento))
@@ -84,7 +81,6 @@ public class FinanciamentoService : IFinanciamentoService
 
         await financiamentoWriteOnlyRepository.ExcluiFinanciamentoAsync(idfinanciamento);
     }
-
     public async Task ExcluiFinanciamentoClienteAsync(int cpf)
     {
         if (!await FinanciamentoClienteExisteAsync(cpf))
@@ -92,7 +88,6 @@ public class FinanciamentoService : IFinanciamentoService
 
         await financiamentoWriteOnlyRepository.ExcluiFinanciamentoClienteAsync(cpf);
     }
-
     public async Task<FinanciamentoResult> IncluiFinanciamentoAsync(FinanciamentoEntity financiamento)
     {
         if (financiamento == null)
@@ -150,7 +145,6 @@ public class FinanciamentoService : IFinanciamentoService
 
         return parcelafinanciamento;
     }
-
 
     public async Task<FinanciamentoEntity> RetornaFinanciamentoAsync(int idfinanciamento)
     {
